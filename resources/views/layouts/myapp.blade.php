@@ -10,7 +10,11 @@
             </div>
         @else
             <div class="bg-dark text-white py-2 px-3 mb-4 text-end">
-                Not logged in
+                Not logged in (
+                <a href="{{ route('login') }}" class="text-white text-decoration-underline">
+                    Login here
+                </a>
+                )
             </div>
         @endif
 
@@ -29,7 +33,7 @@
 
         <div>
             @if (session('message'))
-                <p><b>{{ session('message') }}</b></p>
+                <p class="text-end"><b>{{ session('message') }}</b></p>
             @endif
 
             @yield('content')
