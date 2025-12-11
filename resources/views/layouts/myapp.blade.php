@@ -6,6 +6,17 @@
     <body>
         <h1>@yield('title')</h1>
 
+        @if($errors->any())
+            <div class="alert alert-danger">
+                Errors:
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div>
             @if (session('message'))
                 <p><b>{{ session('message') }}</b></p>
