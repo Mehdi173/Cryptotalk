@@ -4,14 +4,13 @@
 
 @section('content')
 <div class="container mt-4">
-    <a href="{{ url()->previous() }}" class="btn btn-outline-secondary mb-3">
-        &larr; Back
-    </a>
+    <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary mb-3">&larr; Back to posts</a>
+
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>{{ $user->name }}'s activity</h2>
 
-        <a href="{{ route('profile.edit') }}" class="btn btn-secondary">
-            View Profile
+        <a href="{{ route('profile.show', $user->id) }}" class="btn btn-secondary">
+            View profile
         </a>
     </div>
 
@@ -65,7 +64,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-muted">This user has not made any comments.</p>
+                <p class="text-muted">This user has not made any comments yet.</p>
             @endforelse
 
         </div>

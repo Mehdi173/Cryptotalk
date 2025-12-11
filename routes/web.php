@@ -36,6 +36,8 @@ Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name
 
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
+Route::get('/users/{user}/profile', [ProfileController::class, 'show'])->name('profile.show');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

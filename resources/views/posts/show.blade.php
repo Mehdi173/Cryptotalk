@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary mb-3">&larr; Back to Posts</a>
+    <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary mb-3">&larr; Back to posts</a>
 
     <div class="card shadow-sm mb-4">
         <div class="card-body">
