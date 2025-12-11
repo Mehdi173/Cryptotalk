@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('password');
-            $table->string('type');
-            $table->dateTime('date_of_birth')->nullable();
-            $table->bigInteger('member_id')->unsigned();
+            $table->bigInteger('age')->nullable();
+            $table->boolean('is_admin')->default(false);
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('member_id')->references('id')->on('members')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }

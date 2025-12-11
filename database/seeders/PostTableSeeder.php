@@ -15,13 +15,13 @@ class PostTableSeeder extends Seeder
     {
         $p = new Post;
         $p->text = "This is a test post!";
-        $p->member_id = 1; // username1
+        $p->user_id = 1; // John
         $p->save();
 
-        $q = new Post;
-        $q->text = "This is the second test post!";
-        $q->member_id = 2; // username2
-        $q->save();
+        $p = new Post;
+        $p->text = "This is the second test post!";
+        $p->user_id = 2; // David
+        $p->save();
 
         Post::factory()->count(20)->create();
     }

@@ -14,18 +14,16 @@ class ProfileTableSeeder extends Seeder
     public function run(): void
     {
         $p = new Profile;
-        $p->email = "test1@gmail.com";
-        $p->password = "testPassword";
-        $p->type = "admin";
-        $p->member_id = 1; // username1
+        $p->age = 32;
+        $p->is_admin = true;
+        $p->user_id = 1; // John
         $p->save();
 
-        $q = new Profile;
-        $q->email = "test2@gmail.com";
-        $q->password = "testPassword";
-        $q->type = "normal";
-        $q->member_id = 2; // username2
-        $q->save();
+        $p = new Profile;
+        $p->age = null;
+        $p->is_admin = false;
+        $p->user_id = 2; // David
+        $p->save();
 
         Profile::factory()->count(20)->create();
     }

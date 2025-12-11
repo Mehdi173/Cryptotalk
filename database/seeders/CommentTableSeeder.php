@@ -16,12 +16,14 @@ class CommentTableSeeder extends Seeder
         $c = new Comment;
         $c->text = "This is a test comment!";
         $c->post_id = 1; // "This is a test post!"
+        $c->user_id = 1;
         $c->save();
 
-        $d = new Comment;
-        $d->text = "This is the second test comment!";
-        $d->post_id = 2; // "This is the second test post!"
-        $d->save();
+        $c = new Comment;
+        $c->text = "This is the second test comment!";
+        $c->post_id = 2; // "This is the second test post!"
+        $c->user_id = 2;
+        $c->save();
 
         Comment::factory()->count(20)->create();
     }

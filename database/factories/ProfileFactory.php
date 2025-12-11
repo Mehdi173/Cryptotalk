@@ -19,10 +19,9 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
-            'type' => fake()->randomElement(['admin', 'normal']),
-            'member_id' => 1
+            'age' => fake()->numberBetween(18, 90),
+            'is_admin' => fake()->randomElement([true, false]),
+            'user_id' => 1
         ];
     }
 }

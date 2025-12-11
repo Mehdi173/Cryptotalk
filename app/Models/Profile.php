@@ -9,8 +9,8 @@ class Profile extends Model
 {
     use HasFactory;
 
-    public function member()
+    public function user()
     {
-        return $this->belongsTo(Member::class);
+        return $this->belongsTo(User::class);
     }
 }
