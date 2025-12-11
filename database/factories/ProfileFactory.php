@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +22,7 @@ class ProfileFactory extends Factory
         return [
             'age' => fake()->numberBetween(18, 90),
             'is_admin' => fake()->randomElement([true, false]),
-            'user_id' => 1
+            'user_id' => User::inRandomOrder()->first()->id
         ];
     }
 }
