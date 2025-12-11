@@ -32,7 +32,7 @@ class CommentController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'text' => 'required|string',
+            'text' => 'required|string|min:4',
         ]);
 
         $post->comments()->create([
@@ -57,6 +57,9 @@ class CommentController extends Controller
     public function edit(string $id)
     {
         //
+        $comment = Comment::findOrFail($id);
+
+        return view('comments.edit', compact('comment'));
     }
 
     /**
@@ -65,6 +68,16 @@ class CommentController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $comment = Comment::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'text' => 'required|string|min:4',
+        ]);
+
+        $comment->text = $validatedData['text'];
+        $comment->save();
+
+        return redirect()->route('posts.show', $comment->post_id)->with('message', 'Comment updated successfully!');
     }
 
     /**

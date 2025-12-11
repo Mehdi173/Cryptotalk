@@ -34,8 +34,8 @@ class PostController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title' => 'required|string|min:5|max:255',
+            'content' => 'required|string|min:5',
         ]);
 
         $p = new Post;
@@ -77,8 +77,8 @@ class PostController extends Controller
     {
         //
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title' => 'required|string|min:5|max:255',
+            'content' => 'required|string|min:5',
         ]);
 
         $post = Post::findOrFail($id);
