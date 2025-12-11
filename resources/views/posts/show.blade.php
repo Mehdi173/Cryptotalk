@@ -33,6 +33,10 @@
         @endif
     </div>
 
+    <a href="{{ route('comments.create', $post->id) }}" class="btn btn-primary mb-3">
+        Add Comment
+    </a>
+
     <h4>Comments</h4>
 
     @forelse ($post->comments as $comment)

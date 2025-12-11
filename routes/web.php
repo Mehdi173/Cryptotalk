@@ -23,9 +23,15 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+Route::get('/posts/{post}/comments/create', [CommentController::class, 'create'])->name('comments.create');
 
-Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::get('comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+
+Route::put('comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+
+Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
