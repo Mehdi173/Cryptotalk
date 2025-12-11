@@ -14,12 +14,14 @@ class PostTableSeeder extends Seeder
     public function run(): void
     {
         $p = new Post;
-        $p->text = "This is a test post!";
+        $p->title = "This is a test post!";
+        $p->content = "This is the content of the first test post.";
         $p->user_id = 1; // John
         $p->save();
 
         $p = new Post;
-        $p->text = "This is the second test post!";
+        $p->title = "This is the second test post!";
+        $p->content = "This is the content of the second test post.";
         $p->user_id = 2; // David
         $p->save();
 
