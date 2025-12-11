@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
 
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

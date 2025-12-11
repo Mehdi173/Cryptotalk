@@ -1,6 +1,6 @@
 @extends('layouts.myapp')
 
-@section('title', 'Posts List')
+@section('title', 'Cryptotalk')
 
 @section('content')
     <div class="container mt-3">
@@ -8,6 +8,8 @@
     <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">
         Create New Post
     </a>
+
+    <h1>Posts List</h1>
 
     @foreach ($posts as $post)
         <div class="card mb-4 shadow-sm">
@@ -25,14 +27,6 @@
                 <p class="card-text">
                     {{ $post->content }}
                 </p>
-
-                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
-
-                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
-                </form>
             </div>
         </div>
     @endforeach

@@ -14,6 +14,7 @@ class PostController extends Controller
     {
         //
         $posts = Post::latest()->paginate(10);
+
         return view('posts.index', compact('posts'));
     }
 
@@ -39,6 +40,9 @@ class PostController extends Controller
     public function show(string $id)
     {
         //
+        $post = Post::with('comments', 'user')->findOrFail($id);
+
+        return view('posts.show', compact('post'));
     }
 
     /**
