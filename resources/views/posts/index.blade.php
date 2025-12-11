@@ -21,7 +21,13 @@
                 </h3>
 
                 <p class="text-muted">
-                    By {{ optional($post->user)->name ?? 'Unknown' }}
+                    By @if($post->user)
+                            <a href="{{ route('users.show', $post->user->id) }}">
+                                {{ $post->user->name }}
+                            </a>
+                        @else
+                            Unknown
+                    @endif
                 </p>
 
                 <p class="card-text">

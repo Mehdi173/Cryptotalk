@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +33,8 @@ Route::get('comments/{id}/edit', [CommentController::class, 'edit'])->name('comm
 Route::put('comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
 Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

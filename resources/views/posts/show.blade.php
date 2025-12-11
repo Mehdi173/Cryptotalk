@@ -4,13 +4,19 @@
 
 @section('content')
 <div class="container mt-4">
-    <a href="{{ route('posts.index') }}" class="btn btn-secondary mt-3">Back to Posts</a>
+    <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary mb-3">&larr; Back to Posts</a>
 
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <h2 class="card-title">{{ $post->title }}</h2>
             <p class="text-muted">
-                By {{ optional($post->user)->name ?? 'Unknown' }}
+                    By @if($post->user)
+                            <a href="{{ route('users.show', $post->user->id) }}">
+                                {{ $post->user->name }}
+                            </a>
+                        @else
+                            Unknown
+                    @endif
             </p>
 
             <p class="card-text">{{ $post->content }}</p>
@@ -43,7 +49,11 @@
     <div class="card mb-3">
         <div class="card-body">
 
-            <strong>{{ optional($comment->user)->name ?? 'Unknown user' }}</strong>
+            <strong>
+                <a href="{{ route('users.show', $comment->user->id) }}">
+                    {{ $comment->user->name }}
+                </a>
+            </strong>
 
             <p class="mt-2">{{ $comment->text }}</p>
 
