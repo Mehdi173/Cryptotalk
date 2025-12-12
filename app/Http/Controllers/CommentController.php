@@ -14,7 +14,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        // Unused
     }
 
     /**
@@ -22,7 +22,8 @@ class CommentController extends Controller
      */
     public function create(Post $post)
     {
-        //
+        // Unused currently as we switched the comment creation 
+        // to be done using a livewire component within the post show view
         return view('comments.create', compact('post'));
     }
 
@@ -31,7 +32,7 @@ class CommentController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        //
+        // Validating the input length and type to make sure the comment is meaningful
         $validatedData = $request->validate([
             'text' => 'required|string|min:4',
         ]);
@@ -41,6 +42,7 @@ class CommentController extends Controller
             'user_id' => auth()->id(),
         ]);
 
+        // Notifing the post creator about the new comment only if the commenter is not the post creator
         if ($post->user_id !== auth()->id()) {
             $post->user->notify(new PostCommented($post, $comment));
         }
@@ -53,7 +55,7 @@ class CommentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Unused
     }
 
     /**
@@ -61,7 +63,6 @@ class CommentController extends Controller
      */
     public function edit(string $id)
     {
-        //
         $comment = Comment::findOrFail($id);
 
         return view('comments.edit', compact('comment'));
@@ -72,9 +73,9 @@ class CommentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
         $comment = Comment::findOrFail($id);
 
+        // Validating the input length and type to make sure the comment is meaningful
         $validatedData = $request->validate([
             'text' => 'required|string|min:4',
         ]);
@@ -90,7 +91,6 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
         $comment->delete();
 
         return redirect()->route('posts.show', $comment->post_id)->with('message', 'Comment deleted successfully!');

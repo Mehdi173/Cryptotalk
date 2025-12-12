@@ -14,7 +14,7 @@
         </a>
     </div>
 
-    <!-- Posts section -->
+    <!-- Section showing all of the user's posts -->
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <h4 class="card-title">Posts</h4>
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <!-- Comments section -->
+    <!-- Section showing all of the user's comments -->
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <h4 class="card-title">Comments</h4>

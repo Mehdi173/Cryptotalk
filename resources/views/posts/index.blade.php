@@ -34,6 +34,7 @@
                     {{ $post->content }}
                 </p>
 
+                <!-- Retrieving the image of the post if it was uploaded -->
                 @if ($post->image_path)
                     <div class="mb-3">
                         <img src="{{ route('image.serve', $post->image_path) }}" alt="Post image" class="img-fluid rounded">

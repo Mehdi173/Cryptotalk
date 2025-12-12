@@ -12,7 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // Returning a paginated list of posts showing the latest first
         $posts = Post::latest()->paginate(10);
 
         return view('posts.index', compact('posts'));
@@ -23,7 +23,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
         return view('posts.create');
     }
 
@@ -32,7 +31,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validating the title and content length and type and optional image upload
         $validatedData = $request->validate([
             'title' => 'required|string|min:5|max:255',
             'content' => 'required|string|min:5',
@@ -44,6 +43,7 @@ class PostController extends Controller
         $p->content = $validatedData['content'];
         $p->user_id = auth()->id();
         if ($request->hasFile('image')) {
+            // Storing the uploaded image in a private directory and saving the path to the Post model
             $filename = time().'_'.$request->file('image')->getClientOriginalName();
             $filename = preg_replace('/\s+/', '_', $filename);
             $request->file('image')->storeAs('private/public/images', $filename);
@@ -60,7 +60,6 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
         $post = Post::with('comments', 'user')->findOrFail($id);
 
         return view('posts.show', compact('post'));
@@ -71,7 +70,6 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
         $post = Post::findOrFail($id);
 
         return view('posts.edit', compact('post'));
@@ -82,7 +80,7 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validating the title and content length and type
         $validatedData = $request->validate([
             'title' => 'required|string|min:5|max:255',
             'content' => 'required|string|min:5',
@@ -101,7 +99,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         $post = Post::findOrFail($id);
         $post->delete();
 

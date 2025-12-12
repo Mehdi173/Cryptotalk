@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // Unused
     }
 
     /**
@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // Unused
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Unused
     }
 
     /**
@@ -36,7 +36,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
         $user->load('posts', 'comments');
 
         return view('users.show', compact('user'));
@@ -47,7 +46,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Unused
     }
 
     /**
@@ -55,7 +54,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Unused
     }
 
     /**
@@ -63,6 +62,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Unused
     }
 }

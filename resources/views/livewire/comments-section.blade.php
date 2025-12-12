@@ -39,6 +39,7 @@
                     </div>
                 </div>
 
+                <!-- Showing Edit and Delete buttons to the user if they created the comment or if they are an admin -->
                 @if (auth()->check() && (auth()->id() === $comment->user_id || auth()->user()->profile->is_admin))
                     <div class="d-flex justify-content-end mb-3">
                         <form action="{{ route('comments.edit', $comment->id) }}" method="GET" class="me-2">

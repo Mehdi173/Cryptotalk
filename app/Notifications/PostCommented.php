@@ -43,6 +43,7 @@ class PostCommented extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        // Constructing the email notification including a button to view the post
         return (new MailMessage)
             ->subject('Someone commented on your Cryptotalk post!')
             ->greeting("Hello {$notifiable->name},")

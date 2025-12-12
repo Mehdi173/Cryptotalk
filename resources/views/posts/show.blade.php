@@ -28,6 +28,7 @@
             @endif
         </div>
 
+        <!-- Showing Edit and Delete buttons to the user if they created the post or if they are an admin -->
         @if (auth()->check() && (auth()->id() === $post->user_id || auth()->user()->profile->is_admin))
             <div class="d-flex justify-content-end mb-3">
                 <form action="{{ route('posts.edit', $post->id) }}" method="GET" class="me-2">
@@ -45,6 +46,7 @@
         @endif
     </div>
 
+    <!-- Including the Livewire comments section component -->
     <livewire:comments-section :post="$post" />
 </div>
 @endsection

@@ -27,9 +27,11 @@ class CommentsSection extends Component
 
         $this->text = '';
 
+        // Notifying the post creator about the new comment only if the commenter is not the post creator
         if ($this->post->user_id !== auth()->id()) {
             $this->post->user->notify(new PostCommented($this->post, $comment));
         }
+        // Refreshing the post to get up to date comments (AJAX behavior)
         $this->post->refresh();
     }
 
