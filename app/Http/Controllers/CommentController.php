@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Notifications\PostCommented;
 
 class CommentController extends Controller
 {
@@ -35,10 +36,14 @@ class CommentController extends Controller
             'text' => 'required|string|min:4',
         ]);
 
-        $post->comments()->create([
+        $comment = $post->comments()->create([
             'text' => $validatedData['text'],
             'user_id' => auth()->id(),
         ]);
+
+        if ($post->user_id !== auth()->id()) {
+            $post->user->notify(new PostCommented($post, $comment));
+        }
 
         return redirect()->route('posts.show', $post->id)->with('message', 'Comment added successfully!');
     }
