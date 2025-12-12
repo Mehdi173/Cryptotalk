@@ -25,7 +25,11 @@
             <div class="card mb-3">
                 <div class="card-body">
 
-                    <strong>{{ $comment->user->name }}</strong>
+                    <strong>
+                        <a href="{{ route('users.show', $comment->user->id) }}">
+                            {{ $comment->user->name }}
+                        </a>
+                    </strong>
 
                     <p class="mt-2">{{ $comment->text }}</p>
                     <div class="d-flex justify-content-end">
