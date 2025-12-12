@@ -36,12 +36,19 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|min:5|max:255',
             'content' => 'required|string|min:5',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
         $p->user_id = auth()->id();
+        if ($request->hasFile('image')) {
+            $filename = time().'_'.$request->file('image')->getClientOriginalName();
+            $filename = preg_replace('/\s+/', '_', $filename);
+            $request->file('image')->storeAs('private/public/images', $filename);
+            $p->image_path = 'private/public/images/'.$filename;
+        }
         $p->save();
 
         session()->flash('message', 'Post created successfully!');

@@ -10,7 +10,7 @@
 
             <h2 class="card-title mb-4">Create a new post</h2>
 
-            <form method="POST" action="{{ route('posts.store') }}">
+            <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">
@@ -30,6 +30,11 @@
                         class="form-control"
                         rows="5" 
                     >{{ old('content') }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Image (optional)</label>
+                    <input type="file" name="image" class="form-control">
                 </div>
 
                 <div class="d-flex justify-content-end mt-3">

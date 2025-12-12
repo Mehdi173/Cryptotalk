@@ -38,6 +38,16 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 
 Route::get('/users/{user}/profile', [ProfileController::class, 'show'])->name('profile.show');
 
+Route::get('/image/{path}', function ($path) {
+    $fullPath = storage_path('app/'.$path);
+
+    if (!file_exists($fullPath)) {
+        abort(404);
+    }
+
+    return response()->file($fullPath);
+})->where('path', '.*')->name('image.serve');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

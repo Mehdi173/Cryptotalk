@@ -20,6 +20,12 @@
             </p>
 
             <p class="card-text">{{ $post->content }}</p>
+
+            @if ($post->image_path)
+                <div class="mb-3">
+                    <img src="{{ route('image.serve', $post->image_path) }}" alt="Post image" class="img-fluid rounded">
+                </div>
+            @endif
         </div>
 
         @if (auth()->check() && (auth()->id() === $post->user_id || auth()->user()->profile->is_admin))
