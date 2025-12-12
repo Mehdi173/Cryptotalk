@@ -2,6 +2,7 @@
     <head>
         <title>Cryptotalk</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        @livewireStyles
     </head>
     <body>
         @if(auth()->check())
@@ -38,5 +39,6 @@
 
             @yield('content')
         </div>
+        @livewireScripts
     </body>
 </html>
